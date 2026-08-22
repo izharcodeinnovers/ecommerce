@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+class State extends Model
+{
+    protected $fillable = [
+        'country_id',
+        'name',
+    ];
+
+    /**
+     * @return BelongsTo<Country, $this>
+     */
+    public function country(): BelongsTo
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    /**
+     * @return HasMany<CustomerAddress, $this>
+     */
+    public function customerAddresses(): HasMany
+    {
+        return $this->hasMany(CustomerAddress::class);
+    }
+}
